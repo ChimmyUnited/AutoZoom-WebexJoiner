@@ -38,8 +38,13 @@ namespace AutoMeeter
             this.SystemTimeLabel = new System.Windows.Forms.Label();
             this.SystemTimer = new System.Windows.Forms.Timer(this.components);
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.TimeUntilNextClass = new System.Windows.Forms.Label();
+            this.pictureBox3 = new System.Windows.Forms.PictureBox();
+            this.pictureBox4 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
             this.SuspendLayout();
             // 
             // StartButton
@@ -90,7 +95,7 @@ namespace AutoMeeter
             this.SystemTimeLabel.Font = new System.Drawing.Font("Unispace", 71.99999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.SystemTimeLabel.ForeColor = System.Drawing.Color.White;
             this.SystemTimeLabel.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.SystemTimeLabel.Location = new System.Drawing.Point(409, 21);
+            this.SystemTimeLabel.Location = new System.Drawing.Point(343, 45);
             this.SystemTimeLabel.Name = "SystemTimeLabel";
             this.SystemTimeLabel.Size = new System.Drawing.Size(285, 115);
             this.SystemTimeLabel.TabIndex = 4;
@@ -110,12 +115,45 @@ namespace AutoMeeter
             this.pictureBox2.TabIndex = 5;
             this.pictureBox2.TabStop = false;
             // 
+            // TimeUntilNextClass
+            // 
+            this.TimeUntilNextClass.AutoSize = true;
+            this.TimeUntilNextClass.BackColor = System.Drawing.Color.Transparent;
+            this.TimeUntilNextClass.Font = new System.Drawing.Font("Unispace", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.TimeUntilNextClass.ForeColor = System.Drawing.SystemColors.Control;
+            this.TimeUntilNextClass.Location = new System.Drawing.Point(343, 207);
+            this.TimeUntilNextClass.Name = "TimeUntilNextClass";
+            this.TimeUntilNextClass.Size = new System.Drawing.Size(585, 42);
+            this.TimeUntilNextClass.TabIndex = 6;
+            this.TimeUntilNextClass.Text = "Time Until Next Class: Null";
+            // 
+            // pictureBox3
+            // 
+            this.pictureBox3.BackColor = System.Drawing.Color.Gray;
+            this.pictureBox3.Location = new System.Drawing.Point(957, 499);
+            this.pictureBox3.Name = "pictureBox3";
+            this.pictureBox3.Size = new System.Drawing.Size(152, 150);
+            this.pictureBox3.TabIndex = 7;
+            this.pictureBox3.TabStop = false;
+            // 
+            // pictureBox4
+            // 
+            this.pictureBox4.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox4.BackgroundImage")));
+            this.pictureBox4.Location = new System.Drawing.Point(974, 515);
+            this.pictureBox4.Name = "pictureBox4";
+            this.pictureBox4.Size = new System.Drawing.Size(135, 126);
+            this.pictureBox4.TabIndex = 8;
+            this.pictureBox4.TabStop = false;
+            // 
             // Joiner
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.ClientSize = new System.Drawing.Size(1104, 641);
+            this.Controls.Add(this.pictureBox4);
+            this.Controls.Add(this.pictureBox3);
+            this.Controls.Add(this.TimeUntilNextClass);
             this.Controls.Add(this.SystemTimeLabel);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.StopButton);
@@ -132,6 +170,8 @@ namespace AutoMeeter
             this.Load += new System.EventHandler(this.Joiner_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -146,6 +186,9 @@ namespace AutoMeeter
         private System.Windows.Forms.Label SystemTimeLabel;
         private System.Windows.Forms.Timer SystemTimer;
         private System.Windows.Forms.PictureBox pictureBox2;
+        private System.Windows.Forms.Label TimeUntilNextClass;
+        private System.Windows.Forms.PictureBox pictureBox3;
+        private System.Windows.Forms.PictureBox pictureBox4;
     }
 }
 
