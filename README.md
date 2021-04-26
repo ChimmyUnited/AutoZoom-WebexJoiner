@@ -1,5 +1,6 @@
 # AutoMeeter
-## _Sleep in class all you want_
+#
+# _Sleep in class all you want_
 
 #
 AutoMeeter is a program to solve your online class needs!
