@@ -28,6 +28,7 @@ namespace AutoMeeter
             MaximizeBox = false; // ensure
             StopButton.Enabled = false;
             SystemTimer.Enabled = true;
+            this.IncorrectInput.Hide();
         }
 
         private void StartButton_Click(object sender, EventArgs e)
@@ -53,13 +54,13 @@ namespace AutoMeeter
                 DateTime nextMeeting = DateTime.Parse(meetings[0].Split("     ")[1]);
                 if (nextMeeting.Subtract(currentTime) > TimeSpan.Zero)
                 {
-                    this.TimeUntilNextClass.Text = "Time Until Next Class: " + nextMeeting.Subtract(currentTime).ToString();
+                    this.TimeUntilNextClass.Text = "Time Until Next Class: " + formatDifference(nextMeeting.Subtract(currentTime));
                 } else
                 {
                     if (meetings.Length > 1)
                     {
                         DateTime nextMeeting1 = DateTime.Parse(meetings[1].Split("     ")[1]);
-                        this.TimeUntilNextClass.Text = "Time Until Next Class: " + nextMeeting1.Subtract(currentTime).ToString();
+                        this.TimeUntilNextClass.Text = "Time Until Next Class: " + formatDifference(nextMeeting1.Subtract(currentTime));
                     } else
                     {
                         this.TimeUntilNextClass.Text = "Time Until Next Class: Null";
@@ -89,9 +90,28 @@ namespace AutoMeeter
                 ShowError("Please put a proper Time!");
                 return;
             }
+            if (timeMeeting.CompareTo(DateTime.Now) < 0)
+            {
+                ShowError("Please put a Time after now!");
+                return;
+            }
             this.MeetingsList.Items.Add(URLinput.Text + "     " + timeMeeting.ToString());
             URLinput.Text = "";
             TimeInput.Text = "";
+        }
+        private void RemoveMeeting_Click(object sender, EventArgs e)
+        {
+            if (this.MeetingsList.SelectedItem == null)
+            {
+                ShowError("Select the Meeting you want to Remove!");
+            } else
+            {
+                this.MeetingsList.Items.Remove(this.MeetingsList.SelectedItem);
+                if (this.MeetingsList.Items.Count == 0)
+                {
+                    this.TimeUntilNextClass.Text = "Time Until Next Class: Null";
+                }
+            }
         }
         private void ShowError (string errorMessage)
         {
@@ -116,6 +136,10 @@ namespace AutoMeeter
             {
                 ShowError("Please Check A Meeting Type!");
             }
+        }
+        private string formatDifference (TimeSpan dateDifference)
+        {
+            return string.Format("{0:D2} hrs, {1:D2} mins, {2:D2} secs", dateDifference.Hours, dateDifference.Minutes, dateDifference.Seconds);
         }
     }
 }

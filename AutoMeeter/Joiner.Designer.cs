@@ -50,8 +50,7 @@ namespace AutoMeeter
             this.AddMeetingButton = new System.Windows.Forms.Button();
             this.IncorrectInput = new System.Windows.Forms.Label();
             this.MeetingsList = new System.Windows.Forms.ListBox();
-            this.WebexCheck = new System.Windows.Forms.CheckBox();
-            this.ZoomCheck = new System.Windows.Forms.CheckBox();
+            this.RemoveMeeting = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
@@ -60,7 +59,7 @@ namespace AutoMeeter
             // 
             // StartButton
             // 
-            this.StartButton.Location = new System.Drawing.Point(30, 573);
+            this.StartButton.Location = new System.Drawing.Point(30, 603);
             this.StartButton.Name = "StartButton";
             this.StartButton.Size = new System.Drawing.Size(124, 35);
             this.StartButton.TabIndex = 6;
@@ -79,7 +78,7 @@ namespace AutoMeeter
             // 
             // StopButton
             // 
-            this.StopButton.Location = new System.Drawing.Point(179, 573);
+            this.StopButton.Location = new System.Drawing.Point(179, 603);
             this.StopButton.Name = "StopButton";
             this.StopButton.Size = new System.Drawing.Size(124, 35);
             this.StopButton.TabIndex = 5;
@@ -130,11 +129,11 @@ namespace AutoMeeter
             // 
             this.TimeUntilNextClass.AutoSize = true;
             this.TimeUntilNextClass.BackColor = System.Drawing.Color.Transparent;
-            this.TimeUntilNextClass.Font = new System.Drawing.Font("Microsoft Sans Serif", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.TimeUntilNextClass.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.TimeUntilNextClass.ForeColor = System.Drawing.SystemColors.Control;
             this.TimeUntilNextClass.Location = new System.Drawing.Point(343, 207);
             this.TimeUntilNextClass.Name = "TimeUntilNextClass";
-            this.TimeUntilNextClass.Size = new System.Drawing.Size(458, 39);
+            this.TimeUntilNextClass.Size = new System.Drawing.Size(326, 29);
             this.TimeUntilNextClass.TabIndex = 2;
             this.TimeUntilNextClass.Text = "Time Until Next Class: Null";
             // 
@@ -150,9 +149,10 @@ namespace AutoMeeter
             // pictureBox4
             // 
             this.pictureBox4.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox4.BackgroundImage")));
-            this.pictureBox4.Location = new System.Drawing.Point(1002, 546);
+            this.pictureBox4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pictureBox4.Location = new System.Drawing.Point(1013, 558);
             this.pictureBox4.Name = "pictureBox4";
-            this.pictureBox4.Size = new System.Drawing.Size(107, 95);
+            this.pictureBox4.Size = new System.Drawing.Size(79, 76);
             this.pictureBox4.TabIndex = 0;
             this.pictureBox4.TabStop = false;
             // 
@@ -234,31 +234,16 @@ namespace AutoMeeter
             this.MeetingsList.TabIndex = 16;
             this.MeetingsList.TabStop = false;
             // 
-            // WebexCheck
+            // RemoveMeeting
             // 
-            this.WebexCheck.AutoSize = true;
-            this.WebexCheck.BackColor = System.Drawing.Color.Transparent;
-            this.WebexCheck.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.WebexCheck.ForeColor = System.Drawing.Color.White;
-            this.WebexCheck.Location = new System.Drawing.Point(1002, 511);
-            this.WebexCheck.Name = "WebexCheck";
-            this.WebexCheck.Size = new System.Drawing.Size(82, 25);
-            this.WebexCheck.TabIndex = 17;
-            this.WebexCheck.Text = "Webex";
-            this.WebexCheck.UseVisualStyleBackColor = false;
-            // 
-            // ZoomCheck
-            // 
-            this.ZoomCheck.AutoSize = true;
-            this.ZoomCheck.BackColor = System.Drawing.Color.Transparent;
-            this.ZoomCheck.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.ZoomCheck.ForeColor = System.Drawing.Color.White;
-            this.ZoomCheck.Location = new System.Drawing.Point(1002, 475);
-            this.ZoomCheck.Name = "ZoomCheck";
-            this.ZoomCheck.Size = new System.Drawing.Size(69, 24);
-            this.ZoomCheck.TabIndex = 18;
-            this.ZoomCheck.Text = "Zoom";
-            this.ZoomCheck.UseVisualStyleBackColor = false;
+            this.RemoveMeeting.Location = new System.Drawing.Point(104, 558);
+            this.RemoveMeeting.Name = "RemoveMeeting";
+            this.RemoveMeeting.Size = new System.Drawing.Size(124, 35);
+            this.RemoveMeeting.TabIndex = 17;
+            this.RemoveMeeting.TabStop = false;
+            this.RemoveMeeting.Text = "Remove";
+            this.RemoveMeeting.UseVisualStyleBackColor = true;
+            this.RemoveMeeting.Click += new System.EventHandler(this.RemoveMeeting_Click);
             // 
             // Joiner
             // 
@@ -266,8 +251,7 @@ namespace AutoMeeter
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.ClientSize = new System.Drawing.Size(1104, 641);
-            this.Controls.Add(this.ZoomCheck);
-            this.Controls.Add(this.WebexCheck);
+            this.Controls.Add(this.RemoveMeeting);
             this.Controls.Add(this.MeetingsList);
             this.Controls.Add(this.IncorrectInput);
             this.Controls.Add(this.TimeUntilNextClass);
@@ -277,13 +261,13 @@ namespace AutoMeeter
             this.Controls.Add(this.StartButton);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.pictureBox2);
-            this.Controls.Add(this.pictureBox3);
-            this.Controls.Add(this.pictureBox4);
             this.Controls.Add(this.URLinput);
             this.Controls.Add(this.TimeInput);
             this.Controls.Add(this.URLLabel);
             this.Controls.Add(this.TimeLabel);
             this.Controls.Add(this.AddMeetingButton);
+            this.Controls.Add(this.pictureBox4);
+            this.Controls.Add(this.pictureBox3);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
@@ -320,8 +304,7 @@ namespace AutoMeeter
         private System.Windows.Forms.Button AddMeetingButton;
         private System.Windows.Forms.Label IncorrectInput;
         private System.Windows.Forms.ListBox MeetingsList;
-        private CheckBox WebexCheck;
-        private CheckBox ZoomCheck;
+        private Button RemoveMeeting;
     }
 }
 
