@@ -276,7 +276,6 @@ namespace AutoMeeter
             this.Name = "Joiner";
             this.Text = "Auto Meeting Joiner";
             this.Load += new System.EventHandler(this.Joiner_Load);
-            this.IncorrectInput.Hide();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();

@@ -27,6 +27,7 @@ namespace AutoMeeter
             MaximizeBox = false; // ensure
             StopButton.Enabled = false;
             SystemTimer.Enabled = true;
+            this.IncorrectInput.Hide();
         }
 
         private static string GetDefaultBrowserPath()
