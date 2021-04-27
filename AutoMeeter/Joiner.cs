@@ -11,6 +11,7 @@ using System.Globalization;
 using System.Windows.Forms;
 using System.Diagnostics;
 using System.Threading;
+using OpenQA.Selenium.Chrome;
 
 namespace AutoMeeter
 {
@@ -27,13 +28,6 @@ namespace AutoMeeter
             MaximizeBox = false; // ensure
             StopButton.Enabled = false;
             SystemTimer.Enabled = true;
-        }
-
-        private static string GetDefaultBrowserPath()
-        {
-            string key = @"htmlfile\shell\open\command";
-            RegistryKey registryKey = Registry.ClassesRoot.OpenSubKey(key, false);
-            return ((string)registryKey.GetValue(null, null)).Split('"')[1];
         }
 
         private void StartButton_Click(object sender, EventArgs e)
@@ -84,7 +78,7 @@ namespace AutoMeeter
         private void AddMeetingButton_Click(object sender, EventArgs e)
         {
             DateTime timeMeeting;
-            // Check if URL matches Webex pattern and time is in proper format
+            // Check if URL matches Webex/Zoom pattern and time is in proper format
             if (!(URLinput.Text.Contains("webex.com") || URLinput.Text.Contains("zoom.us")))
             {
                 ShowError("Please put a proper URL!");
@@ -110,7 +104,18 @@ namespace AutoMeeter
         }
         private void JoinMeeting(string URL)
         {
-
+            ChromeDriver driver = new();
+            driver.Navigate().GoToUrl(URL);
+            if(ZoomCheck.Checked)
+            {
+                throw new NotImplementedException();
+            } else if(WebexCheck.Checked)
+            {
+                throw new NotImplementedException();
+            } else
+            {
+                ShowError("Please Check A Meeting Type!");
+            }
         }
     }
 }

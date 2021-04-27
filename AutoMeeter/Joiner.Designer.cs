@@ -50,6 +50,8 @@ namespace AutoMeeter
             this.AddMeetingButton = new System.Windows.Forms.Button();
             this.IncorrectInput = new System.Windows.Forms.Label();
             this.MeetingsList = new System.Windows.Forms.ListBox();
+            this.WebexCheck = new System.Windows.Forms.CheckBox();
+            this.ZoomCheck = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
@@ -217,7 +219,6 @@ namespace AutoMeeter
             this.IncorrectInput.TabIndex = 15;
             this.IncorrectInput.Text = "Error: ";
             this.IncorrectInput.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.IncorrectInput.Hide();
             // 
             // MeetingsList
             // 
@@ -225,14 +226,39 @@ namespace AutoMeeter
             this.MeetingsList.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.MeetingsList.ForeColor = System.Drawing.SystemColors.MenuHighlight;
             this.MeetingsList.FormattingEnabled = true;
+            this.MeetingsList.HorizontalScrollbar = true;
             this.MeetingsList.ItemHeight = 20;
             this.MeetingsList.Location = new System.Drawing.Point(13, 67);
-            this.MeetingsList.Name = "listBox1";
+            this.MeetingsList.Name = "MeetingsList";
             this.MeetingsList.Size = new System.Drawing.Size(314, 484);
             this.MeetingsList.TabIndex = 16;
             this.MeetingsList.TabStop = false;
-            this.MeetingsList.HorizontalScrollbar = true;
-            this.MeetingsList.Items.Clear();
+            // 
+            // WebexCheck
+            // 
+            this.WebexCheck.AutoSize = true;
+            this.WebexCheck.BackColor = System.Drawing.Color.Transparent;
+            this.WebexCheck.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.WebexCheck.ForeColor = System.Drawing.Color.White;
+            this.WebexCheck.Location = new System.Drawing.Point(1002, 511);
+            this.WebexCheck.Name = "WebexCheck";
+            this.WebexCheck.Size = new System.Drawing.Size(82, 25);
+            this.WebexCheck.TabIndex = 17;
+            this.WebexCheck.Text = "Webex";
+            this.WebexCheck.UseVisualStyleBackColor = false;
+            // 
+            // ZoomCheck
+            // 
+            this.ZoomCheck.AutoSize = true;
+            this.ZoomCheck.BackColor = System.Drawing.Color.Transparent;
+            this.ZoomCheck.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.ZoomCheck.ForeColor = System.Drawing.Color.White;
+            this.ZoomCheck.Location = new System.Drawing.Point(1002, 475);
+            this.ZoomCheck.Name = "ZoomCheck";
+            this.ZoomCheck.Size = new System.Drawing.Size(69, 24);
+            this.ZoomCheck.TabIndex = 18;
+            this.ZoomCheck.Text = "Zoom";
+            this.ZoomCheck.UseVisualStyleBackColor = false;
             // 
             // Joiner
             // 
@@ -240,6 +266,8 @@ namespace AutoMeeter
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.ClientSize = new System.Drawing.Size(1104, 641);
+            this.Controls.Add(this.ZoomCheck);
+            this.Controls.Add(this.WebexCheck);
             this.Controls.Add(this.MeetingsList);
             this.Controls.Add(this.IncorrectInput);
             this.Controls.Add(this.TimeUntilNextClass);
@@ -292,6 +320,8 @@ namespace AutoMeeter
         private System.Windows.Forms.Button AddMeetingButton;
         private System.Windows.Forms.Label IncorrectInput;
         private System.Windows.Forms.ListBox MeetingsList;
+        private CheckBox WebexCheck;
+        private CheckBox ZoomCheck;
     }
 }
 
