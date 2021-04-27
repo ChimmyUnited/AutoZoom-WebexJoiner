@@ -141,5 +141,21 @@ namespace AutoMeeter
         {
             return string.Format("{0:D2} hrs, {1:D2} mins, {2:D2} secs", dateDifference.Hours, dateDifference.Minutes, dateDifference.Seconds);
         }
+
+        private void ZoomCheck_CheckedChanged(object sender, EventArgs e)
+        {
+            if(ZoomCheck.Checked)
+            {
+                WebexCheck.Checked = false;
+            }
+        }
+
+        private void WebexCheck_CheckedChanged(object sender, EventArgs e)
+        {
+            if(WebexCheck.Checked)
+            {
+                ZoomCheck.Checked = false;
+            }
+        }
     }
 }
