@@ -11,6 +11,10 @@ using System.Globalization;
 using System.Windows.Forms;
 using System.Diagnostics;
 using System.Threading;
+using OpenQA.Selenium.Chrome;
+using OpenQA.Selenium;
+using System.IO;
+using System.Reflection;
 
 namespace AutoMeeter
 {
@@ -128,9 +132,14 @@ namespace AutoMeeter
             this.IncorrectInput.Hide();
             this.IncorrectInput.Refresh();
         }
-        private void JoinMeeting(string URL)
-        {
-
+        private void JoinMeeting(string URL) {
+            System.Diagnostics.Debug.WriteLine(URL);
+            var chromeDriverService = ChromeDriverService.CreateDefaultService();
+            chromeDriverService.HideCommandPromptWindow = true;
+            ChromeOptions options = new ChromeOptions();
+            options.BinaryLocation = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+            IWebDriver driver = new ChromeDriver(chromeDriverService, options);
+            driver.Navigate().GoToUrl(URL);
         }
         private string formatDifference (TimeSpan dateDifference)
         {
