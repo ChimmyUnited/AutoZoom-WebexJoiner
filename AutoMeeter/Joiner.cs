@@ -12,9 +12,6 @@ using System.Windows.Forms;
 using System.Diagnostics;
 using System.Threading;
 using OpenQA.Selenium.Chrome;
-using OpenQA.Selenium;
-using System.IO;
-using System.Reflection;
 
 namespace AutoMeeter
 {
@@ -32,13 +29,6 @@ namespace AutoMeeter
             StopButton.Enabled = false;
             SystemTimer.Enabled = true;
             this.IncorrectInput.Hide();
-        }
-
-        private static string GetDefaultBrowserPath()
-        {
-            string key = @"htmlfile\shell\open\command";
-            RegistryKey registryKey = Registry.ClassesRoot.OpenSubKey(key, false);
-            return ((string)registryKey.GetValue(null, null)).Split('"')[1];
         }
 
         private void StartButton_Click(object sender, EventArgs e)
@@ -89,7 +79,7 @@ namespace AutoMeeter
         private void AddMeetingButton_Click(object sender, EventArgs e)
         {
             DateTime timeMeeting;
-            // Check if URL matches Webex pattern and time is in proper format
+            // Check if URL matches Webex/Zoom pattern and time is in proper format
             if (!(URLinput.Text.Contains("webex.com") || URLinput.Text.Contains("zoom.us")))
             {
                 ShowError("Please put a proper URL!");
@@ -132,18 +122,40 @@ namespace AutoMeeter
             this.IncorrectInput.Hide();
             this.IncorrectInput.Refresh();
         }
-        private void JoinMeeting(string URL) {
-            System.Diagnostics.Debug.WriteLine(URL);
-            var chromeDriverService = ChromeDriverService.CreateDefaultService();
-            chromeDriverService.HideCommandPromptWindow = true;
-            ChromeOptions options = new ChromeOptions();
-            options.BinaryLocation = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
-            IWebDriver driver = new ChromeDriver(chromeDriverService, options);
+        private void JoinMeeting(string URL)
+        {
+            ChromeDriver driver = new();
             driver.Navigate().GoToUrl(URL);
+            if(ZoomCheck.Checked)
+            {
+                throw new NotImplementedException();
+            } else if(WebexCheck.Checked)
+            {
+                throw new NotImplementedException();
+            } else
+            {
+                ShowError("Please Check A Meeting Type!");
+            }
         }
         private string formatDifference (TimeSpan dateDifference)
         {
             return string.Format("{0:D2} hrs, {1:D2} mins, {2:D2} secs", dateDifference.Hours, dateDifference.Minutes, dateDifference.Seconds);
+        }
+
+        private void ZoomCheck_CheckedChanged(object sender, EventArgs e)
+        {
+            if(ZoomCheck.Checked)
+            {
+                WebexCheck.Checked = false;
+            }
+        }
+
+        private void WebexCheck_CheckedChanged(object sender, EventArgs e)
+        {
+            if(WebexCheck.Checked)
+            {
+                ZoomCheck.Checked = false;
+            }
         }
     }
 }
