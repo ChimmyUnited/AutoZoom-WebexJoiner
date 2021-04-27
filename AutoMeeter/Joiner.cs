@@ -50,7 +50,41 @@ namespace AutoMeeter
 
         private void SystemTimer_Tick(object sender, EventArgs e)
         {
-            SystemTimeLabel.Text = DateTime.Now.ToString()[DateTime.Now.ToString().IndexOf(" ")..];
+            DateTime currentTime = DateTime.Now;
+            SystemTimeLabel.Text = currentTime.ToString()[currentTime.ToString().IndexOf(" ")..];
+            string[] meetings = new string[this.MeetingsList.Items.Count];
+            this.MeetingsList.Items.CopyTo(meetings, 0);
+            if (meetings.Length > 0)
+            {
+                DateTime nextMeeting = DateTime.Parse(meetings[0].Split("     ")[1]);
+                this.TimeUntilNextClass.Text = "Time Until Next Class: " + nextMeeting.Subtract(currentTime).ToString();
+            }
+        }
+
+        private void AddMeetingButton_Click(object sender, EventArgs e)
+        {
+            DateTime timeMeeting;
+            // Check if URL matches Webex pattern and time is in proper format
+            if (!(URLinput.Text.Contains("webex.com")))
+            {
+                showError("Please put a proper URL!");
+                return;
+            }
+            else if (!DateTime.TryParse(TimeInput.Text, out timeMeeting))
+            {
+                showError("Please put a proper Time!");
+                return;
+            }
+            this.MeetingsList.Items.Add(URLinput.Text + "     " + timeMeeting.ToString());
+        }
+        private void showError (string errorMessage)
+        {
+            this.IncorrectInput.Text = "Error: " + errorMessage;
+            this.IncorrectInput.Show();
+            this.IncorrectInput.Refresh();
+            Thread.Sleep(2000);
+            this.IncorrectInput.Hide();
+            this.IncorrectInput.Refresh();
         }
     }
 }

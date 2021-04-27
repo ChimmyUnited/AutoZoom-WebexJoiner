@@ -1,4 +1,6 @@
 ﻿
+using System.Windows.Forms;
+
 namespace AutoMeeter
 {
     partial class Joiner
@@ -41,6 +43,13 @@ namespace AutoMeeter
             this.TimeUntilNextClass = new System.Windows.Forms.Label();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
+            this.URLinput = new System.Windows.Forms.TextBox();
+            this.TimeInput = new System.Windows.Forms.TextBox();
+            this.URLLabel = new System.Windows.Forms.Label();
+            this.TimeLabel = new System.Windows.Forms.Label();
+            this.AddMeetingButton = new System.Windows.Forms.Button();
+            this.IncorrectInput = new System.Windows.Forms.Label();
+            this.MeetingsList = new System.Windows.Forms.ListBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
@@ -52,7 +61,7 @@ namespace AutoMeeter
             this.StartButton.Location = new System.Drawing.Point(30, 573);
             this.StartButton.Name = "StartButton";
             this.StartButton.Size = new System.Drawing.Size(124, 35);
-            this.StartButton.TabIndex = 0;
+            this.StartButton.TabIndex = 6;
             this.StartButton.Text = "Start";
             this.StartButton.UseVisualStyleBackColor = true;
             this.StartButton.Click += new System.EventHandler(this.StartButton_Click);
@@ -63,7 +72,7 @@ namespace AutoMeeter
             this.pictureBox1.Location = new System.Drawing.Point(0, -2);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(337, 643);
-            this.pictureBox1.TabIndex = 1;
+            this.pictureBox1.TabIndex = 7;
             this.pictureBox1.TabStop = false;
             // 
             // StopButton
@@ -71,7 +80,7 @@ namespace AutoMeeter
             this.StopButton.Location = new System.Drawing.Point(179, 573);
             this.StopButton.Name = "StopButton";
             this.StopButton.Size = new System.Drawing.Size(124, 35);
-            this.StopButton.TabIndex = 2;
+            this.StopButton.TabIndex = 5;
             this.StopButton.Text = "Stop";
             this.StopButton.UseVisualStyleBackColor = true;
             this.StopButton.Click += new System.EventHandler(this.StopButton_Click);
@@ -85,20 +94,20 @@ namespace AutoMeeter
             this.label1.Location = new System.Drawing.Point(54, 9);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(227, 50);
-            this.label1.TabIndex = 3;
+            this.label1.TabIndex = 4;
             this.label1.Text = "Meeting IDs";
             // 
             // SystemTimeLabel
             // 
             this.SystemTimeLabel.AutoSize = true;
             this.SystemTimeLabel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
-            this.SystemTimeLabel.Font = new System.Drawing.Font("Unispace", 71.99999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.SystemTimeLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 71.99999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.SystemTimeLabel.ForeColor = System.Drawing.Color.White;
             this.SystemTimeLabel.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this.SystemTimeLabel.Location = new System.Drawing.Point(343, 45);
             this.SystemTimeLabel.Name = "SystemTimeLabel";
-            this.SystemTimeLabel.Size = new System.Drawing.Size(285, 115);
-            this.SystemTimeLabel.TabIndex = 4;
+            this.SystemTimeLabel.Size = new System.Drawing.Size(213, 108);
+            this.SystemTimeLabel.TabIndex = 3;
             this.SystemTimeLabel.Text = "Null";
             // 
             // SystemTimer
@@ -112,38 +121,118 @@ namespace AutoMeeter
             this.pictureBox2.Location = new System.Drawing.Point(333, -2);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(777, 196);
-            this.pictureBox2.TabIndex = 5;
+            this.pictureBox2.TabIndex = 8;
             this.pictureBox2.TabStop = false;
             // 
             // TimeUntilNextClass
             // 
             this.TimeUntilNextClass.AutoSize = true;
             this.TimeUntilNextClass.BackColor = System.Drawing.Color.Transparent;
-            this.TimeUntilNextClass.Font = new System.Drawing.Font("Unispace", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.TimeUntilNextClass.Font = new System.Drawing.Font("Microsoft Sans Serif", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.TimeUntilNextClass.ForeColor = System.Drawing.SystemColors.Control;
             this.TimeUntilNextClass.Location = new System.Drawing.Point(343, 207);
             this.TimeUntilNextClass.Name = "TimeUntilNextClass";
-            this.TimeUntilNextClass.Size = new System.Drawing.Size(585, 42);
-            this.TimeUntilNextClass.TabIndex = 6;
+            this.TimeUntilNextClass.Size = new System.Drawing.Size(458, 39);
+            this.TimeUntilNextClass.TabIndex = 2;
             this.TimeUntilNextClass.Text = "Time Until Next Class: Null";
             // 
             // pictureBox3
             // 
             this.pictureBox3.BackColor = System.Drawing.Color.Gray;
-            this.pictureBox3.Location = new System.Drawing.Point(957, 499);
+            this.pictureBox3.Location = new System.Drawing.Point(1002, 546);
             this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(152, 150);
-            this.pictureBox3.TabIndex = 7;
+            this.pictureBox3.Size = new System.Drawing.Size(107, 103);
+            this.pictureBox3.TabIndex = 1;
             this.pictureBox3.TabStop = false;
             // 
             // pictureBox4
             // 
             this.pictureBox4.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox4.BackgroundImage")));
-            this.pictureBox4.Location = new System.Drawing.Point(974, 515);
+            this.pictureBox4.Location = new System.Drawing.Point(1002, 546);
             this.pictureBox4.Name = "pictureBox4";
-            this.pictureBox4.Size = new System.Drawing.Size(135, 126);
-            this.pictureBox4.TabIndex = 8;
+            this.pictureBox4.Size = new System.Drawing.Size(107, 95);
+            this.pictureBox4.TabIndex = 0;
             this.pictureBox4.TabStop = false;
+            // 
+            // URLinput
+            // 
+            this.URLinput.Location = new System.Drawing.Point(419, 612);
+            this.URLinput.Name = "URLinput";
+            this.URLinput.Size = new System.Drawing.Size(292, 23);
+            this.URLinput.TabIndex = 10;
+            this.URLinput.TabStop = false;
+            // 
+            // TimeInput
+            // 
+            this.TimeInput.Location = new System.Drawing.Point(793, 612);
+            this.TimeInput.Name = "TimeInput";
+            this.TimeInput.Size = new System.Drawing.Size(122, 23);
+            this.TimeInput.TabIndex = 11;
+            this.TimeInput.TabStop = false;
+            // 
+            // URLLabel
+            // 
+            this.URLLabel.AutoSize = true;
+            this.URLLabel.BackColor = System.Drawing.Color.Transparent;
+            this.URLLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.URLLabel.ForeColor = System.Drawing.SystemColors.Control;
+            this.URLLabel.Location = new System.Drawing.Point(717, 606);
+            this.URLLabel.Name = "URLLabel";
+            this.URLLabel.Size = new System.Drawing.Size(80, 29);
+            this.URLLabel.TabIndex = 12;
+            this.URLLabel.Text = "Time:";
+            // 
+            // TimeLabel
+            // 
+            this.TimeLabel.AutoSize = true;
+            this.TimeLabel.BackColor = System.Drawing.Color.Transparent;
+            this.TimeLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.TimeLabel.ForeColor = System.Drawing.SystemColors.Control;
+            this.TimeLabel.Location = new System.Drawing.Point(343, 606);
+            this.TimeLabel.Name = "TimeLabel";
+            this.TimeLabel.Size = new System.Drawing.Size(70, 29);
+            this.TimeLabel.TabIndex = 13;
+            this.TimeLabel.Text = "URL:";
+            // 
+            // AddMeetingButton
+            // 
+            this.AddMeetingButton.Location = new System.Drawing.Point(921, 612);
+            this.AddMeetingButton.Name = "AddMeetingButton";
+            this.AddMeetingButton.Size = new System.Drawing.Size(75, 22);
+            this.AddMeetingButton.TabIndex = 14;
+            this.AddMeetingButton.TabStop = false;
+            this.AddMeetingButton.Text = "Add";
+            this.AddMeetingButton.UseVisualStyleBackColor = true;
+            this.AddMeetingButton.Click += new System.EventHandler(this.AddMeetingButton_Click);
+            // 
+            // IncorrectInput
+            // 
+            this.IncorrectInput.AutoSize = true;
+            this.IncorrectInput.BackColor = System.Drawing.Color.Transparent;
+            this.IncorrectInput.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.IncorrectInput.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(255)))), ((int)(((byte)(78)))), ((int)(((byte)(78)))));
+            this.IncorrectInput.Location = new System.Drawing.Point(513, 582);
+            this.IncorrectInput.Name = "IncorrectInput";
+            this.IncorrectInput.Size = new System.Drawing.Size(69, 24);
+            this.IncorrectInput.TabIndex = 15;
+            this.IncorrectInput.Text = "Error: ";
+            this.IncorrectInput.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.IncorrectInput.Hide();
+            // 
+            // MeetingsList
+            // 
+            this.MeetingsList.BackColor = System.Drawing.SystemColors.Menu;
+            this.MeetingsList.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.MeetingsList.ForeColor = System.Drawing.SystemColors.MenuHighlight;
+            this.MeetingsList.FormattingEnabled = true;
+            this.MeetingsList.ItemHeight = 20;
+            this.MeetingsList.Location = new System.Drawing.Point(13, 67);
+            this.MeetingsList.Name = "listBox1";
+            this.MeetingsList.Size = new System.Drawing.Size(314, 484);
+            this.MeetingsList.TabIndex = 16;
+            this.MeetingsList.TabStop = false;
+            this.MeetingsList.HorizontalScrollbar = true;
+            this.MeetingsList.Items.Clear();
             // 
             // Joiner
             // 
@@ -151,8 +240,8 @@ namespace AutoMeeter
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.ClientSize = new System.Drawing.Size(1104, 641);
-            this.Controls.Add(this.pictureBox4);
-            this.Controls.Add(this.pictureBox3);
+            this.Controls.Add(this.MeetingsList);
+            this.Controls.Add(this.IncorrectInput);
             this.Controls.Add(this.TimeUntilNextClass);
             this.Controls.Add(this.SystemTimeLabel);
             this.Controls.Add(this.label1);
@@ -160,6 +249,13 @@ namespace AutoMeeter
             this.Controls.Add(this.StartButton);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.pictureBox2);
+            this.Controls.Add(this.pictureBox3);
+            this.Controls.Add(this.pictureBox4);
+            this.Controls.Add(this.URLinput);
+            this.Controls.Add(this.TimeInput);
+            this.Controls.Add(this.URLLabel);
+            this.Controls.Add(this.TimeLabel);
+            this.Controls.Add(this.AddMeetingButton);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
@@ -189,6 +285,13 @@ namespace AutoMeeter
         private System.Windows.Forms.Label TimeUntilNextClass;
         private System.Windows.Forms.PictureBox pictureBox3;
         private System.Windows.Forms.PictureBox pictureBox4;
+        private System.Windows.Forms.TextBox URLinput;
+        private System.Windows.Forms.TextBox TimeInput;
+        private System.Windows.Forms.Label URLLabel;
+        private System.Windows.Forms.Label TimeLabel;
+        private System.Windows.Forms.Button AddMeetingButton;
+        private System.Windows.Forms.Label IncorrectInput;
+        private System.Windows.Forms.ListBox MeetingsList;
     }
 }
 
