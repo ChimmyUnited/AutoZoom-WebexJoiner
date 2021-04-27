@@ -10476,9 +10476,6 @@
         A910OCm2k0/NNNOJDzysAoAilnVCnnlPdaJSQAA7
 </value>
   </data>
-  <metadata name="button1.Locked" type="System.Boolean, System.Private.CoreLib, Version=5.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e">
-    <value>True</value>
-  </metadata>
   <data name="$this.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing.Common" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAABGAAAANcCAIAAACfc06mAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO

@@ -149,9 +149,10 @@ namespace AutoMeeter
             // pictureBox4
             // 
             this.pictureBox4.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox4.BackgroundImage")));
-            this.pictureBox4.Location = new System.Drawing.Point(1002, 546);
+            this.pictureBox4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pictureBox4.Location = new System.Drawing.Point(1013, 558);
             this.pictureBox4.Name = "pictureBox4";
-            this.pictureBox4.Size = new System.Drawing.Size(107, 95);
+            this.pictureBox4.Size = new System.Drawing.Size(79, 76);
             this.pictureBox4.TabIndex = 0;
             this.pictureBox4.TabStop = false;
             // 
@@ -218,7 +219,6 @@ namespace AutoMeeter
             this.IncorrectInput.TabIndex = 15;
             this.IncorrectInput.Text = "Error: ";
             this.IncorrectInput.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.IncorrectInput.Hide();
             // 
             // MeetingsList
             // 
@@ -261,13 +261,13 @@ namespace AutoMeeter
             this.Controls.Add(this.StartButton);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.pictureBox2);
-            this.Controls.Add(this.pictureBox3);
-            this.Controls.Add(this.pictureBox4);
             this.Controls.Add(this.URLinput);
             this.Controls.Add(this.TimeInput);
             this.Controls.Add(this.URLLabel);
             this.Controls.Add(this.TimeLabel);
             this.Controls.Add(this.AddMeetingButton);
+            this.Controls.Add(this.pictureBox4);
+            this.Controls.Add(this.pictureBox3);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
@@ -276,6 +276,7 @@ namespace AutoMeeter
             this.Name = "Joiner";
             this.Text = "Auto Meeting Joiner";
             this.Load += new System.EventHandler(this.Joiner_Load);
+            this.IncorrectInput.Hide();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
