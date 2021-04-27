@@ -95,9 +95,28 @@ namespace AutoMeeter
                 ShowError("Please put a proper Time!");
                 return;
             }
+            if (timeMeeting.CompareTo(DateTime.Now) < 0)
+            {
+                ShowError("Please put a Time after now!");
+                return;
+            }
             this.MeetingsList.Items.Add(URLinput.Text + "     " + timeMeeting.ToString());
             URLinput.Text = "";
             TimeInput.Text = "";
+        }
+        private void RemoveMeeting_Click(object sender, EventArgs e)
+        {
+            if (this.MeetingsList.SelectedItem == null)
+            {
+                ShowError("Select the Meeting you want to Remove!");
+            } else
+            {
+                this.MeetingsList.Items.Remove(this.MeetingsList.SelectedItem);
+                if (this.MeetingsList.Items.Count == 0)
+                {
+                    this.TimeUntilNextClass.Text = "Time Until Next Class: Null";
+                }
+            }
         }
         private void ShowError (string errorMessage)
         {
