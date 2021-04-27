@@ -1,17 +1,8 @@
-﻿using Microsoft.Win32;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
+﻿using System;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
-using System.Globalization;
 using System.Windows.Forms;
 using System.Diagnostics;
-using System.Threading;
-using System.Collections;
 
 namespace AutoMeeter
 {
@@ -28,7 +19,7 @@ namespace AutoMeeter
             MaximizeBox = false; // ensure
             StopButton.Enabled = false;
             SystemTimer.Enabled = true;
-            this.IncorrectInput.Hide();
+            IncorrectInput.Hide();
         }
 
         private void StartButton_Click(object sender, EventArgs e)
@@ -47,31 +38,31 @@ namespace AutoMeeter
         {
             DateTime currentTime = DateTime.Now;
             SystemTimeLabel.Text = currentTime.ToString()[currentTime.ToString().IndexOf(" ")..];
-            string[] meetings = new string[this.MeetingsList.Items.Count];
-            this.MeetingsList.Items.CopyTo(meetings, 0);
+            string[] meetings = new string[MeetingsList.Items.Count];
+            MeetingsList.Items.CopyTo(meetings, 0);
             if (meetings.Length > 0)
             {
                 DateTime nextMeeting = DateTime.Parse(meetings[0].Split("     ")[1]);
                 if (nextMeeting.Subtract(currentTime) > TimeSpan.Zero)
                 {
-                    this.TimeUntilNextClass.Text = "Time Until Next Class: " + formatDifference(nextMeeting.Subtract(currentTime));
+                    TimeUntilNextClass.Text = "Time Until Next Class: " + formatDifference(nextMeeting.Subtract(currentTime));
                 } else
                 {
                     if (meetings.Length > 1)
                     {
                         DateTime nextMeeting1 = DateTime.Parse(meetings[1].Split("     ")[1]);
-                        this.TimeUntilNextClass.Text = "Time Until Next Class: " + formatDifference(nextMeeting1.Subtract(currentTime));
+                        TimeUntilNextClass.Text = "Time Until Next Class: " + formatDifference(nextMeeting1.Subtract(currentTime));
                     } else
                     {
-                        this.TimeUntilNextClass.Text = "Time Until Next Class: Null";
+                        TimeUntilNextClass.Text = "Time Until Next Class: Null";
                     }
                     string url = meetings[0].Split("     ")[0];
                     Task.Factory.StartNew(() => { JoinMeeting(url); });
                     meetings = meetings.Skip(1).ToArray();
-                    this.MeetingsList.Items.Clear();
+                    MeetingsList.Items.Clear();
                     foreach (string meeting in meetings)
                     {
-                        this.MeetingsList.Items.Add(meeting);
+                        MeetingsList.Items.Add(meeting);
                     }
                 }
             }
@@ -96,36 +87,36 @@ namespace AutoMeeter
                 ShowError("Please put a Time after now!");
                 return;
             }
-            this.MeetingsList.Items.Add(URLinput.Text + "     " + timeMeeting.ToString());
+            MeetingsList.Items.Add(URLinput.Text + "     " + timeMeeting.ToString());
             URLinput.Text = "";
             TimeInput.Text = "";
         }
         private void RemoveMeeting_Click(object sender, EventArgs e)
         {
-            if (this.MeetingsList.SelectedItem == null)
+            if (MeetingsList.SelectedItem == null)
             {
                 ShowError("Select the Meeting you want to Remove!");
             } else
             {
-                this.MeetingsList.Items.Remove(this.MeetingsList.SelectedItem);
-                if (this.MeetingsList.Items.Count == 0)
+                MeetingsList.Items.Remove(this.MeetingsList.SelectedItem);
+                if (MeetingsList.Items.Count == 0)
                 {
-                    this.TimeUntilNextClass.Text = "Time Until Next Class: Null";
+                    TimeUntilNextClass.Text = "Time Until Next Class: Null";
                 }
             }
         }
         private async void ShowError (string errorMessage)
         {
-            this.IncorrectInput.Text = "Error: " + errorMessage;
-            this.IncorrectInput.Show();
-            this.IncorrectInput.Refresh();
+            IncorrectInput.Text = "Error: " + errorMessage;
+            IncorrectInput.Show();
+            IncorrectInput.Refresh();
             await Task.Delay(2000);
-            this.IncorrectInput.Hide();
-            this.IncorrectInput.Refresh();
+            IncorrectInput.Hide();
+            IncorrectInput.Refresh();
         }
         private void JoinMeeting(string URL) 
         {
-            if (this.StopButton.Enabled)
+            if (StopButton.Enabled)
             {
                 return;
             }

@@ -1,7 +1,4 @@
-﻿
-using System.Windows.Forms;
-
-namespace AutoMeeter
+﻿namespace AutoMeeter
 {
     partial class Joiner
     {
