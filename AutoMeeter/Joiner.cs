@@ -60,13 +60,13 @@ namespace AutoMeeter
                 DateTime nextMeeting = DateTime.Parse(meetings[0].Split("     ")[1]);
                 if (nextMeeting.Subtract(currentTime) > TimeSpan.Zero)
                 {
-                    this.TimeUntilNextClass.Text = "Time Until Next Class: " + nextMeeting.Subtract(currentTime).ToString();
+                    this.TimeUntilNextClass.Text = "Time Until Next Class: " + formatDifference(nextMeeting.Subtract(currentTime));
                 } else
                 {
                     if (meetings.Length > 1)
                     {
                         DateTime nextMeeting1 = DateTime.Parse(meetings[1].Split("     ")[1]);
-                        this.TimeUntilNextClass.Text = "Time Until Next Class: " + nextMeeting1.Subtract(currentTime).ToString();
+                        this.TimeUntilNextClass.Text = "Time Until Next Class: " + formatDifference(nextMeeting1.Subtract(currentTime));
                     } else
                     {
                         this.TimeUntilNextClass.Text = "Time Until Next Class: Null";
@@ -131,6 +131,10 @@ namespace AutoMeeter
         private void JoinMeeting(string URL)
         {
 
+        }
+        private string formatDifference (TimeSpan dateDifference)
+        {
+            return string.Format("{0:D2} hrs, {1:D2} mins, {2:D2} secs", dateDifference.Hours, dateDifference.Minutes, dateDifference.Seconds);
         }
     }
 }

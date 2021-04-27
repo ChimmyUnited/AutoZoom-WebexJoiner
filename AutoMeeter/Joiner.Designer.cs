@@ -129,11 +129,11 @@ namespace AutoMeeter
             // 
             this.TimeUntilNextClass.AutoSize = true;
             this.TimeUntilNextClass.BackColor = System.Drawing.Color.Transparent;
-            this.TimeUntilNextClass.Font = new System.Drawing.Font("Microsoft Sans Serif", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.TimeUntilNextClass.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.TimeUntilNextClass.ForeColor = System.Drawing.SystemColors.Control;
             this.TimeUntilNextClass.Location = new System.Drawing.Point(343, 207);
             this.TimeUntilNextClass.Name = "TimeUntilNextClass";
-            this.TimeUntilNextClass.Size = new System.Drawing.Size(458, 39);
+            this.TimeUntilNextClass.Size = new System.Drawing.Size(326, 29);
             this.TimeUntilNextClass.TabIndex = 2;
             this.TimeUntilNextClass.Text = "Time Until Next Class: Null";
             // 
