@@ -50,7 +50,6 @@ namespace AutoMeeter
             this.AddMeetingButton = new System.Windows.Forms.Button();
             this.IncorrectInput = new System.Windows.Forms.Label();
             this.MeetingsList = new System.Windows.Forms.ListBox();
-            this.RemoveMeeting = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
@@ -233,17 +232,8 @@ namespace AutoMeeter
             this.MeetingsList.Size = new System.Drawing.Size(314, 484);
             this.MeetingsList.TabIndex = 16;
             this.MeetingsList.TabStop = false;
-            // 
-            // RemoveMeeting
-            // 
-            this.RemoveMeeting.Location = new System.Drawing.Point(104, 558);
-            this.RemoveMeeting.Name = "RemoveMeeting";
-            this.RemoveMeeting.Size = new System.Drawing.Size(124, 35);
-            this.RemoveMeeting.TabIndex = 17;
-            this.RemoveMeeting.TabStop = false;
-            this.RemoveMeeting.Text = "Remove";
-            this.RemoveMeeting.UseVisualStyleBackColor = true;
-            this.RemoveMeeting.Click += new System.EventHandler(this.RemoveMeeting_Click);
+            this.MeetingsList.HorizontalScrollbar = true;
+            this.MeetingsList.Items.Clear();
             // 
             // Joiner
             // 
@@ -251,7 +241,6 @@ namespace AutoMeeter
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.ClientSize = new System.Drawing.Size(1104, 641);
-            this.Controls.Add(this.RemoveMeeting);
             this.Controls.Add(this.MeetingsList);
             this.Controls.Add(this.IncorrectInput);
             this.Controls.Add(this.TimeUntilNextClass);
@@ -304,7 +293,6 @@ namespace AutoMeeter
         private System.Windows.Forms.Button AddMeetingButton;
         private System.Windows.Forms.Label IncorrectInput;
         private System.Windows.Forms.ListBox MeetingsList;
-        private Button RemoveMeeting;
     }
 }
 
