@@ -57,7 +57,27 @@ namespace AutoMeeter
             if (meetings.Length > 0)
             {
                 DateTime nextMeeting = DateTime.Parse(meetings[0].Split("     ")[1]);
-                this.TimeUntilNextClass.Text = "Time Until Next Class: " + nextMeeting.Subtract(currentTime).ToString();
+                if (nextMeeting.Subtract(currentTime) > TimeSpan.Zero)
+                {
+                    this.TimeUntilNextClass.Text = "Time Until Next Class: " + nextMeeting.Subtract(currentTime).ToString();
+                } else
+                {
+                    if (meetings.Length > 1)
+                    {
+                        DateTime nextMeeting1 = DateTime.Parse(meetings[1].Split("     ")[1]);
+                        this.TimeUntilNextClass.Text = "Time Until Next Class: " + nextMeeting1.Subtract(currentTime).ToString();
+                    } else
+                    {
+                        this.TimeUntilNextClass.Text = "Time Until Next Class: Null";
+                    }
+                    JoinMeeting(meetings[0].Split("     ")[0]);
+                    meetings = meetings.Skip(1).ToArray();
+                    this.MeetingsList.Items.Clear();
+                    foreach (string meeting in meetings)
+                    {
+                        this.MeetingsList.Items.Add(meeting);
+                    }
+                }
             }
         }
 
@@ -65,19 +85,21 @@ namespace AutoMeeter
         {
             DateTime timeMeeting;
             // Check if URL matches Webex pattern and time is in proper format
-            if (!(URLinput.Text.Contains("webex.com")))
+            if (!(URLinput.Text.Contains("webex.com") || URLinput.Text.Contains("zoom.us")))
             {
-                showError("Please put a proper URL!");
+                ShowError("Please put a proper URL!");
                 return;
             }
             else if (!DateTime.TryParse(TimeInput.Text, out timeMeeting))
             {
-                showError("Please put a proper Time!");
+                ShowError("Please put a proper Time!");
                 return;
             }
             this.MeetingsList.Items.Add(URLinput.Text + "     " + timeMeeting.ToString());
+            URLinput.Text = "";
+            TimeInput.Text = "";
         }
-        private void showError (string errorMessage)
+        private void ShowError (string errorMessage)
         {
             this.IncorrectInput.Text = "Error: " + errorMessage;
             this.IncorrectInput.Show();
@@ -85,6 +107,10 @@ namespace AutoMeeter
             Thread.Sleep(2000);
             this.IncorrectInput.Hide();
             this.IncorrectInput.Refresh();
+        }
+        private void JoinMeeting(string URL)
+        {
+
         }
     }
 }
