@@ -11,7 +11,7 @@ using System.Globalization;
 using System.Windows.Forms;
 using System.Diagnostics;
 using System.Threading;
-using OpenQA.Selenium.Chrome;
+using System.Collections;
 
 namespace AutoMeeter
 {
@@ -65,7 +65,8 @@ namespace AutoMeeter
                     {
                         this.TimeUntilNextClass.Text = "Time Until Next Class: Null";
                     }
-                    JoinMeeting(meetings[0].Split("     ")[0]);
+                    string url = meetings[0].Split("     ")[0];
+                    Task.Factory.StartNew(() => { JoinMeeting(url); });
                     meetings = meetings.Skip(1).ToArray();
                     this.MeetingsList.Items.Clear();
                     foreach (string meeting in meetings)
@@ -80,9 +81,9 @@ namespace AutoMeeter
         {
             DateTime timeMeeting;
             // Check if URL matches Webex/Zoom pattern and time is in proper format
-            if (!(URLinput.Text.Contains("webex.com") || URLinput.Text.Contains("zoom.us")))
+            if (!((URLinput.Text.Contains("webex.com") || URLinput.Text.Contains("zoom.us")) && (URLinput.Text.StartsWith("https://") || URLinput.Text.StartsWith("http://"))))
             {
-                ShowError("Please put a proper URL!");
+                ShowError("Please put a proper URL that starts with http:// or https://!");
                 return;
             }
             else if (!DateTime.TryParse(TimeInput.Text, out timeMeeting))
@@ -90,7 +91,7 @@ namespace AutoMeeter
                 ShowError("Please put a proper Time!");
                 return;
             }
-            if (timeMeeting.CompareTo(DateTime.Now) < 0)
+            else if (timeMeeting.CompareTo(DateTime.Now) < 0)
             {
                 ShowError("Please put a Time after now!");
                 return;
@@ -113,49 +114,31 @@ namespace AutoMeeter
                 }
             }
         }
-        private void ShowError (string errorMessage)
+        private async void ShowError (string errorMessage)
         {
             this.IncorrectInput.Text = "Error: " + errorMessage;
             this.IncorrectInput.Show();
             this.IncorrectInput.Refresh();
-            Thread.Sleep(2000);
+            await Task.Delay(2000);
             this.IncorrectInput.Hide();
             this.IncorrectInput.Refresh();
         }
-        private void JoinMeeting(string URL)
+        private void JoinMeeting(string URL) 
         {
-            ChromeDriver driver = new();
-            driver.Navigate().GoToUrl(URL);
-            if(ZoomCheck.Checked)
+            if (this.StopButton.Enabled)
             {
-                throw new NotImplementedException();
-            } else if(WebexCheck.Checked)
-            {
-                throw new NotImplementedException();
-            } else
-            {
-                ShowError("Please Check A Meeting Type!");
+                return;
             }
+            ProcessStartInfo psInfo = new ProcessStartInfo
+            {
+                FileName = URL,
+                UseShellExecute = true
+            };
+            Process.Start(psInfo);
         }
         private string formatDifference (TimeSpan dateDifference)
         {
             return string.Format("{0:D2} hrs, {1:D2} mins, {2:D2} secs", dateDifference.Hours, dateDifference.Minutes, dateDifference.Seconds);
-        }
-
-        private void ZoomCheck_CheckedChanged(object sender, EventArgs e)
-        {
-            if(ZoomCheck.Checked)
-            {
-                WebexCheck.Checked = false;
-            }
-        }
-
-        private void WebexCheck_CheckedChanged(object sender, EventArgs e)
-        {
-            if(WebexCheck.Checked)
-            {
-                ZoomCheck.Checked = false;
-            }
         }
     }
 }
