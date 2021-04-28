@@ -24,7 +24,10 @@ namespace AutoMeeter
             {
                 if (!SavedMeeting.Equals(""))
                 {
-                    DefaultList.Items.Add(SavedMeeting);
+                    DateTime savedDate = DateTime.Parse(SavedMeeting.Split("     ")[1]);
+                    DateTime now = DateTime.Now;
+                    DateTime updated = new DateTime(now.Year, now.Month, now.Day, savedDate.Hour, savedDate.Minute, 0);
+                    DefaultList.Items.Add(SavedMeeting.Split("     ")[0] + "     " + updated.ToString());
                 }
             }
         }
