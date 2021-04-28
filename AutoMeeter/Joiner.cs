@@ -22,7 +22,7 @@ namespace AutoMeeter
             IncorrectInput.Hide();
             foreach (string SavedMeeting in Properties.Settings.Default.DefaultList.Split(','))
             {
-                if (!SavedMeeting.Equals(""))
+                if (!SavedMeeting.Equals(string.Empty))
                 {
                     DateTime savedDate = DateTime.Parse(SavedMeeting.Split("     ")[1]);
                     DateTime now = DateTime.Now;
