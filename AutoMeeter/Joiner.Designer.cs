@@ -51,6 +51,7 @@
             this.DefaultList = new System.Windows.Forms.ListBox();
             this.LoadDefault = new System.Windows.Forms.Button();
             this.SaveDefault = new System.Windows.Forms.Button();
+            this.Credit = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
@@ -105,7 +106,7 @@
             this.SystemTimeLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 71.99999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.SystemTimeLabel.ForeColor = System.Drawing.Color.White;
             this.SystemTimeLabel.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.SystemTimeLabel.Location = new System.Drawing.Point(343, 45);
+            this.SystemTimeLabel.Location = new System.Drawing.Point(352, 57);
             this.SystemTimeLabel.Name = "SystemTimeLabel";
             this.SystemTimeLabel.Size = new System.Drawing.Size(213, 108);
             this.SystemTimeLabel.TabIndex = 3;
@@ -282,12 +283,25 @@
             this.SaveDefault.UseVisualStyleBackColor = true;
             this.SaveDefault.Click += new System.EventHandler(this.SaveDefault_Click);
             // 
+            // Credit
+            // 
+            this.Credit.AutoSize = true;
+            this.Credit.BackColor = System.Drawing.Color.Transparent;
+            this.Credit.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.Credit.ForeColor = System.Drawing.Color.White;
+            this.Credit.Location = new System.Drawing.Point(751, 22);
+            this.Credit.Name = "Credit";
+            this.Credit.Size = new System.Drawing.Size(341, 19);
+            this.Credit.TabIndex = 23;
+            this.Credit.Text = "Made by Bacon#2077 and Hackerman#5035";
+            // 
             // Joiner
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.ClientSize = new System.Drawing.Size(1104, 641);
+            this.Controls.Add(this.Credit);
             this.Controls.Add(this.SaveDefault);
             this.Controls.Add(this.LoadDefault);
             this.Controls.Add(this.DefaultList);
@@ -348,6 +362,7 @@
         private System.Windows.Forms.ListBox DefaultList;
         private System.Windows.Forms.Button LoadDefault;
         private System.Windows.Forms.Button SaveDefault;
+        private System.Windows.Forms.Label Credit;
     }
 }
 
