@@ -199,7 +199,7 @@ namespace AutoMeeter
             };
             Process.Start(psInfo);
         }
-        private string FormatDifference(TimeSpan dateDifference)
+        private static string FormatDifference(TimeSpan dateDifference)
         {
             return string.Format("{0:D2} hrs, {1:D2} mins, {2:D2} secs", dateDifference.Hours, dateDifference.Minutes, dateDifference.Seconds);
         }
