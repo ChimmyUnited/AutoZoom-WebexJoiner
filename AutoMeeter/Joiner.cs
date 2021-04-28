@@ -108,7 +108,7 @@ namespace AutoMeeter
                 ShowError("Please put a proper Time!");
                 return;
             }
-            else if (timeMeeting.CompareTo(DateTime.Now) < 0)
+            else if ((timeMeeting.CompareTo(DateTime.Now) < 0) && EditMeetingIDs.Enabled)
             {
                 ShowError("Please put a Time after now!");
                 return;
@@ -147,9 +147,13 @@ namespace AutoMeeter
         }
         private void LoadDefault_Click(object sender, EventArgs e)
         {
-            foreach (Object o in DefaultList.Items)
+            foreach (string s in DefaultList.Items)
             {
-                MeetingsList.Items.Add(o);
+                DateTime savedMeeting = DateTime.Parse(s.Split("     ")[1]);
+                if (savedMeeting.CompareTo(DateTime.Now) > 0)
+                {
+                    MeetingsList.Items.Add(s);
+                }
             }
         }
         private void SaveDefault_Click(object sender, EventArgs e)
