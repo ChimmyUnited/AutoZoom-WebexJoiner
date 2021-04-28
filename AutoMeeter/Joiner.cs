@@ -71,13 +71,13 @@ namespace AutoMeeter
                 DateTime nextMeeting = DateTime.Parse(meetings[0].Split("     ")[1]);
                 if (nextMeeting.Subtract(currentTime) > TimeSpan.Zero)
                 {
-                    TimeUntilNextClass.Text = "Time Until Next Class: " + formatDifference(nextMeeting.Subtract(currentTime));
+                    TimeUntilNextClass.Text = "Time Until Next Class: " + FormatDifference(nextMeeting.Subtract(currentTime));
                 } else
                 {
                     if (meetings.Length > 1)
                     {
                         DateTime nextMeeting1 = DateTime.Parse(meetings[1].Split("     ")[1]);
-                        TimeUntilNextClass.Text = "Time Until Next Class: " + formatDifference(nextMeeting1.Subtract(currentTime));
+                        TimeUntilNextClass.Text = "Time Until Next Class: " + FormatDifference(nextMeeting1.Subtract(currentTime));
                     } else
                     {
                         TimeUntilNextClass.Text = "Time Until Next Class: Null";
@@ -116,11 +116,11 @@ namespace AutoMeeter
             if (EditDefault.Enabled)
             {
                 DefaultList.Items.Add(URLinput.Text + "     " + timeMeeting.ToString());
-                sort(DefaultList);
+                Sort(DefaultList);
             } else
             {
                 MeetingsList.Items.Add(URLinput.Text + "     " + timeMeeting.ToString());
-                sort(MeetingsList);
+                Sort(MeetingsList);
             }
             URLinput.Text = "";
             TimeInput.Text = "";
@@ -168,7 +168,7 @@ namespace AutoMeeter
             Properties.Settings.Default.DefaultList = String.Join(",", meetings);
             Properties.Settings.Default.Save();
         }
-        private async void ShowError (string errorMessage)
+        private async void ShowError(string errorMessage)
         {
             IncorrectInput.Text = "Error: " + errorMessage;
             IncorrectInput.Show();
@@ -183,18 +183,18 @@ namespace AutoMeeter
             {
                 return;
             }
-            ProcessStartInfo psInfo = new ProcessStartInfo
+            ProcessStartInfo psInfo = new()
             {
                 FileName = URL,
                 UseShellExecute = true
             };
             Process.Start(psInfo);
         }
-        private string formatDifference (TimeSpan dateDifference)
+        private string FormatDifference(TimeSpan dateDifference)
         {
             return string.Format("{0:D2} hrs, {1:D2} mins, {2:D2} secs", dateDifference.Hours, dateDifference.Minutes, dateDifference.Seconds);
         }
-        private void sort (ListBox UnsortedListBox)
+        private static void Sort(ListBox UnsortedListBox)
         {
             string[] arr = new string[UnsortedListBox.Items.Count];
             UnsortedListBox.Items.CopyTo(arr, 0);
@@ -213,7 +213,7 @@ namespace AutoMeeter
                 while (j >= 0 && DateTime.Parse(arr[j].Split("     ")[1]).CompareTo(key) > 0)
                 {
                     arr[j + 1] = arr[j];
-                    j = j - 1;
+                    j--;
                 }
                 arr[j + 1] = originalkey;
             }
