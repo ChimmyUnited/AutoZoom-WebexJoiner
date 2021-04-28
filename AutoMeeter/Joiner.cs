@@ -98,14 +98,19 @@ namespace AutoMeeter
         {
             DateTime timeMeeting;
             // Check if URL matches Webex/Zoom pattern and time is in proper format
-            if (!((URLinput.Text.Contains("webex.com") || URLinput.Text.Contains("zoom.us")) && (URLinput.Text.StartsWith("https://") || URLinput.Text.StartsWith("http://"))))
+            if (!((URLinput.Text.Contains("webex.com") || URLinput.Text.Contains("zoom.us"))))
             {
-                ShowError("Please put a proper URL that starts with http:// or https://!");
+                ShowError("Please put a zoom or webex URL!");
                 return;
             }
             else if (!DateTime.TryParse(TimeInput.Text, out timeMeeting))
             {
                 ShowError("Please put a proper Time!");
+                return;
+            }
+            else if (!Uri.IsWellFormedUriString(URLinput.Text, UriKind.Absolute))
+            {
+                ShowError("Please put a proper URL!");
                 return;
             }
             else if ((timeMeeting.CompareTo(DateTime.Now) < 0) && EditMeetingIDs.Enabled)
