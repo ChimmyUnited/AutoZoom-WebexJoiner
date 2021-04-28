@@ -17,21 +17,44 @@ namespace AutoMeeter
         {
             FormBorderStyle = FormBorderStyle.Sizable;
             MaximizeBox = false; // ensure
-            StopButton.Enabled = false;
+            EditDefault.Enabled = false;
             SystemTimer.Enabled = true;
             IncorrectInput.Hide();
+            foreach (string SavedMeeting in Properties.Settings.Default.DefaultList.Split(','))
+            {
+                if (!SavedMeeting.Equals(""))
+                {
+                    DefaultList.Items.Add(SavedMeeting);
+                }
+            }
         }
 
-        private void StartButton_Click(object sender, EventArgs e)
+        private void EditMeetingIDS_Click(object sender, EventArgs e)
         {
-            StopButton.Enabled = true;
-            StartButton.Enabled = false;
+            EditDefault.Enabled = true;
+            EditMeetingIDs.Enabled = false;
         }
 
-        private void StopButton_Click(object sender, EventArgs e)
+        private void EditDefault_Click(object sender, EventArgs e)
         {
-            StartButton.Enabled = true;
-            StopButton.Enabled = false;
+            EditMeetingIDs.Enabled = true;
+            EditDefault.Enabled = false;
+        }
+
+        private void MeetingsList_Select(object sender, EventArgs e)
+        {
+            if (MeetingsList.SelectedItem != null)
+            {
+                DefaultList.ClearSelected();
+            }
+        }
+
+        private void DefaultList_Select(object sender, EventArgs e)
+        {
+            if (DefaultList.SelectedItem != null)
+            {
+                MeetingsList.ClearSelected();
+            }
         }
 
         private void SystemTimer_Tick(object sender, EventArgs e)
@@ -87,23 +110,60 @@ namespace AutoMeeter
                 ShowError("Please put a Time after now!");
                 return;
             }
-            MeetingsList.Items.Add(URLinput.Text + "     " + timeMeeting.ToString());
+            if (EditDefault.Enabled)
+            {
+                DefaultList.Items.Add(URLinput.Text + "     " + timeMeeting.ToString());
+                sort(DefaultList);
+            } else
+            {
+                MeetingsList.Items.Add(URLinput.Text + "     " + timeMeeting.ToString());
+                sort(MeetingsList);
+            }
             URLinput.Text = "";
             TimeInput.Text = "";
         }
         private void RemoveMeeting_Click(object sender, EventArgs e)
         {
-            if (MeetingsList.SelectedItem == null)
+            if (MeetingsList.SelectedItem == null && DefaultList.SelectedItem == null)
             {
                 ShowError("Select the Meeting you want to Remove!");
             } else
             {
-                MeetingsList.Items.Remove(this.MeetingsList.SelectedItem);
-                if (MeetingsList.Items.Count == 0)
+                if (DefaultList.SelectedItem == null)
                 {
-                    TimeUntilNextClass.Text = "Time Until Next Class: Null";
+                    MeetingsList.Items.Remove(this.MeetingsList.SelectedItem);
+                    if (MeetingsList.Items.Count == 0)
+                    {
+                        TimeUntilNextClass.Text = "Time Until Next Class: Null";
+                    }
+                } else
+                {
+                    DefaultList.Items.Remove(this.DefaultList.SelectedItem);
                 }
             }
+        }
+        private void LoadDefault_Click(object sender, EventArgs e)
+        {
+            foreach (Object o in DefaultList.Items)
+            {
+                MeetingsList.Items.Add(o);
+            }
+        }
+        private void SaveDefault_Click(object sender, EventArgs e)
+        {
+            string[] meetings = new string[DefaultList.Items.Count];
+            DefaultList.Items.CopyTo(meetings, 0);
+            Properties.Settings.Default.DefaultList = String.Join(",", meetings);
+            Properties.Settings.Default.Save();
+        }
+
+        protected override void OnFormClosing(FormClosingEventArgs e)
+        {
+            base.OnFormClosing(e);
+            string[] meetings = new string[DefaultList.Items.Count];
+            DefaultList.Items.CopyTo(meetings, 0);
+            Properties.Settings.Default.DefaultList = String.Join(",", meetings);
+            Properties.Settings.Default.Save();
         }
         private async void ShowError (string errorMessage)
         {
@@ -116,7 +176,7 @@ namespace AutoMeeter
         }
         private void JoinMeeting(string URL) 
         {
-            if (StopButton.Enabled)
+            if (EditDefault.Enabled)
             {
                 return;
             }
@@ -130,6 +190,35 @@ namespace AutoMeeter
         private string formatDifference (TimeSpan dateDifference)
         {
             return string.Format("{0:D2} hrs, {1:D2} mins, {2:D2} secs", dateDifference.Hours, dateDifference.Minutes, dateDifference.Seconds);
+        }
+        private void sort (ListBox UnsortedListBox)
+        {
+            string[] arr = new string[UnsortedListBox.Items.Count];
+            UnsortedListBox.Items.CopyTo(arr, 0);
+            if (arr.Length == 0)
+            {
+                return;
+            }
+            int i, j;
+            string originalkey;
+            DateTime key;
+            for (i = 1; i < arr.Length; i++)
+            {
+                originalkey = arr[i];
+                key = DateTime.Parse(arr[i].Split("     ")[1]);
+                j = i - 1;
+                while (j >= 0 && DateTime.Parse(arr[j].Split("     ")[1]).CompareTo(key) > 0)
+                {
+                    arr[j + 1] = arr[j];
+                    j = j - 1;
+                }
+                arr[j + 1] = originalkey;
+            }
+            UnsortedListBox.Items.Clear();
+            foreach (string meeting in arr)
+            {
+                UnsortedListBox.Items.Add(meeting);
+            }
         }
     }
 }

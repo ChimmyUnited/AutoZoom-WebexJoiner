@@ -30,9 +30,9 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Joiner));
-            this.StartButton = new System.Windows.Forms.Button();
+            this.EditMeetingIDs = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.StopButton = new System.Windows.Forms.Button();
+            this.EditDefault = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.SystemTimeLabel = new System.Windows.Forms.Label();
             this.SystemTimer = new System.Windows.Forms.Timer(this.components);
@@ -48,21 +48,24 @@
             this.IncorrectInput = new System.Windows.Forms.Label();
             this.MeetingsList = new System.Windows.Forms.ListBox();
             this.RemoveMeeting = new System.Windows.Forms.Button();
+            this.DefaultList = new System.Windows.Forms.ListBox();
+            this.LoadDefault = new System.Windows.Forms.Button();
+            this.SaveDefault = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
             this.SuspendLayout();
             // 
-            // StartButton
+            // EditMeetingIDs
             // 
-            this.StartButton.Location = new System.Drawing.Point(30, 603);
-            this.StartButton.Name = "StartButton";
-            this.StartButton.Size = new System.Drawing.Size(124, 35);
-            this.StartButton.TabIndex = 6;
-            this.StartButton.Text = "Start";
-            this.StartButton.UseVisualStyleBackColor = true;
-            this.StartButton.Click += new System.EventHandler(this.StartButton_Click);
+            this.EditMeetingIDs.Location = new System.Drawing.Point(30, 603);
+            this.EditMeetingIDs.Name = "EditMeetingIDs";
+            this.EditMeetingIDs.Size = new System.Drawing.Size(124, 35);
+            this.EditMeetingIDs.TabIndex = 6;
+            this.EditMeetingIDs.Text = "Edit Meeting IDs";
+            this.EditMeetingIDs.UseVisualStyleBackColor = true;
+            this.EditMeetingIDs.Click += new System.EventHandler(this.EditMeetingIDS_Click);
             // 
             // pictureBox1
             // 
@@ -73,15 +76,15 @@
             this.pictureBox1.TabIndex = 7;
             this.pictureBox1.TabStop = false;
             // 
-            // StopButton
+            // EditDefault
             // 
-            this.StopButton.Location = new System.Drawing.Point(179, 603);
-            this.StopButton.Name = "StopButton";
-            this.StopButton.Size = new System.Drawing.Size(124, 35);
-            this.StopButton.TabIndex = 5;
-            this.StopButton.Text = "Stop";
-            this.StopButton.UseVisualStyleBackColor = true;
-            this.StopButton.Click += new System.EventHandler(this.StopButton_Click);
+            this.EditDefault.Location = new System.Drawing.Point(179, 603);
+            this.EditDefault.Name = "EditDefault";
+            this.EditDefault.Size = new System.Drawing.Size(124, 35);
+            this.EditDefault.TabIndex = 5;
+            this.EditDefault.Text = "Edit Default";
+            this.EditDefault.UseVisualStyleBackColor = true;
+            this.EditDefault.Click += new System.EventHandler(this.EditDefault_Click);
             // 
             // label1
             // 
@@ -229,6 +232,7 @@
             this.MeetingsList.Size = new System.Drawing.Size(314, 484);
             this.MeetingsList.TabIndex = 16;
             this.MeetingsList.TabStop = false;
+            this.MeetingsList.Click += new System.EventHandler(this.MeetingsList_Select);
             // 
             // RemoveMeeting
             // 
@@ -241,20 +245,60 @@
             this.RemoveMeeting.UseVisualStyleBackColor = true;
             this.RemoveMeeting.Click += new System.EventHandler(this.RemoveMeeting_Click);
             // 
+            // DefaultList
+            // 
+            this.DefaultList.BackColor = System.Drawing.SystemColors.Menu;
+            this.DefaultList.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.DefaultList.ForeColor = System.Drawing.SystemColors.MenuHighlight;
+            this.DefaultList.FormattingEnabled = true;
+            this.DefaultList.HorizontalScrollbar = true;
+            this.DefaultList.ItemHeight = 20;
+            this.DefaultList.Location = new System.Drawing.Point(352, 239);
+            this.DefaultList.Name = "DefaultList";
+            this.DefaultList.Size = new System.Drawing.Size(740, 284);
+            this.DefaultList.TabIndex = 20;
+            this.DefaultList.TabStop = false;
+            this.DefaultList.Click += new System.EventHandler(this.DefaultList_Select);
+            // 
+            // LoadDefault
+            // 
+            this.LoadDefault.Location = new System.Drawing.Point(802, 529);
+            this.LoadDefault.Name = "LoadDefault";
+            this.LoadDefault.Size = new System.Drawing.Size(124, 35);
+            this.LoadDefault.TabIndex = 21;
+            this.LoadDefault.TabStop = false;
+            this.LoadDefault.Text = "Load Default";
+            this.LoadDefault.UseVisualStyleBackColor = true;
+            this.LoadDefault.Click += new System.EventHandler(this.LoadDefault_Click);
+            // 
+            // SaveDefault
+            // 
+            this.SaveDefault.Location = new System.Drawing.Point(474, 529);
+            this.SaveDefault.Name = "SaveDefault";
+            this.SaveDefault.Size = new System.Drawing.Size(124, 35);
+            this.SaveDefault.TabIndex = 22;
+            this.SaveDefault.TabStop = false;
+            this.SaveDefault.Text = "Save Default";
+            this.SaveDefault.UseVisualStyleBackColor = true;
+            this.SaveDefault.Click += new System.EventHandler(this.SaveDefault_Click);
+            // 
             // Joiner
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.ClientSize = new System.Drawing.Size(1104, 641);
+            this.Controls.Add(this.SaveDefault);
+            this.Controls.Add(this.LoadDefault);
+            this.Controls.Add(this.DefaultList);
             this.Controls.Add(this.RemoveMeeting);
             this.Controls.Add(this.MeetingsList);
             this.Controls.Add(this.IncorrectInput);
             this.Controls.Add(this.TimeUntilNextClass);
             this.Controls.Add(this.SystemTimeLabel);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.StopButton);
-            this.Controls.Add(this.StartButton);
+            this.Controls.Add(this.EditDefault);
+            this.Controls.Add(this.EditMeetingIDs);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.URLinput);
@@ -283,9 +327,9 @@
 
         #endregion
 
-        private System.Windows.Forms.Button StartButton;
+        private System.Windows.Forms.Button EditMeetingIDs;
         private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.Button StopButton;
+        private System.Windows.Forms.Button EditDefault;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label SystemTimeLabel;
         private System.Windows.Forms.Timer SystemTimer;
@@ -301,6 +345,9 @@
         private System.Windows.Forms.Label IncorrectInput;
         private System.Windows.Forms.ListBox MeetingsList;
         private System.Windows.Forms.Button RemoveMeeting;
+        private System.Windows.Forms.ListBox DefaultList;
+        private System.Windows.Forms.Button LoadDefault;
+        private System.Windows.Forms.Button SaveDefault;
     }
 }
 
