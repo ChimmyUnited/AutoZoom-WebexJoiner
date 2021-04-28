@@ -26,7 +26,7 @@ namespace AutoMeeter
                 {
                     DateTime savedDate = DateTime.Parse(SavedMeeting.Split("     ")[1]);
                     DateTime now = DateTime.Now;
-                    DateTime updated = new DateTime(now.Year, now.Month, now.Day, savedDate.Hour, savedDate.Minute, 0);
+                    DateTime updated = new(now.Year, now.Month, now.Day, savedDate.Hour, savedDate.Minute, 0);
                     DefaultList.Items.Add(SavedMeeting.Split("     ")[0] + "     " + updated.ToString());
                 }
             }
