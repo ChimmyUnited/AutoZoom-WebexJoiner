@@ -48,6 +48,7 @@
             this.IncorrectInput = new System.Windows.Forms.Label();
             this.MeetingsList = new System.Windows.Forms.ListBox();
             this.RemoveMeeting = new System.Windows.Forms.Button();
+            this.label2 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
@@ -241,12 +242,25 @@
             this.RemoveMeeting.UseVisualStyleBackColor = true;
             this.RemoveMeeting.Click += new System.EventHandler(this.RemoveMeeting_Click);
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.BackColor = System.Drawing.Color.Transparent;
+            this.label2.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label2.ForeColor = System.Drawing.Color.White;
+            this.label2.Location = new System.Drawing.Point(557, 530);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(279, 16);
+            this.label2.TabIndex = 20;
+            this.label2.Text = "Made by Bacon#2077 and Hackerman#5035";
+            // 
             // Joiner
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.ClientSize = new System.Drawing.Size(1104, 641);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.RemoveMeeting);
             this.Controls.Add(this.MeetingsList);
             this.Controls.Add(this.IncorrectInput);
@@ -301,6 +315,7 @@
         private System.Windows.Forms.Label IncorrectInput;
         private System.Windows.Forms.ListBox MeetingsList;
         private System.Windows.Forms.Button RemoveMeeting;
+        private System.Windows.Forms.Label label2;
     }
 }
 
