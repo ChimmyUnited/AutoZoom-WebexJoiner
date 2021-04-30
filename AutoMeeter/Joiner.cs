@@ -206,7 +206,7 @@ namespace AutoMeeter
         {
             if (URL.Contains("webex"))
             {
-                ChromeDriverService commandlinehider = ChromeDriverService.CreateDefaultService();
+                ChromeDriverService commandlinehider = ChromeDriverService.CreateDefaultService(".");
                 commandlinehider.HideCommandPromptWindow = true;
                 ChromeOptions chrome_options = new ChromeOptions();
                 chrome_options.AddUserProfilePreference("download_restrictions", 3);
