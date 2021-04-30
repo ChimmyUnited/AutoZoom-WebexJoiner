@@ -189,8 +189,9 @@ namespace AutoMeeter
             Properties.Settings.Default.Save();
             foreach (ChromeDriver driver in drivers)
             {
-                // driver.Quit();
+                driver.Quit();
             }
+            Process.Start("CMD.exe", "taskkill /f /im chromedriver.exe");
         }
         private async void ShowError(string errorMessage)
         {
