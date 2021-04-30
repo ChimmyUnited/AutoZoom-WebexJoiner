@@ -3,11 +3,18 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Diagnostics;
+using OpenQA.Selenium.Chrome;
+using OpenQA.Selenium;
+using Keys = OpenQA.Selenium.Keys;
+using System.Collections;
+using OpenQA.Selenium.Support.UI;
+using SeleniumExtras.WaitHelpers;
 
 namespace AutoMeeter
 {
     public partial class Joiner : Form
     {
+        ArrayList drivers = new ArrayList();
         public Joiner()
         {
             InitializeComponent();
@@ -30,6 +37,8 @@ namespace AutoMeeter
                     DefaultList.Items.Add(SavedMeeting.Split("     ")[0] + "     " + updated.ToString());
                 }
             }
+            NameInput.Text = Properties.Settings.Default.Name;
+            EmailInput.Text = Properties.Settings.Default.Email;
         }
 
         private void EditMeetingIDS_Click(object sender, EventArgs e)
@@ -175,7 +184,13 @@ namespace AutoMeeter
             string[] meetings = new string[DefaultList.Items.Count];
             DefaultList.Items.CopyTo(meetings, 0);
             Properties.Settings.Default.DefaultList = String.Join(",", meetings);
+            Properties.Settings.Default.Name = NameInput.Text;
+            Properties.Settings.Default.Email = EmailInput.Text;
             Properties.Settings.Default.Save();
+            foreach (ChromeDriver driver in drivers)
+            {
+                // driver.Quit();
+            }
         }
         private async void ShowError(string errorMessage)
         {
@@ -188,16 +203,48 @@ namespace AutoMeeter
         }
         private void JoinMeeting(string URL) 
         {
-            if (EditDefault.Enabled)
+            if (URL.Contains("webex"))
             {
-                return;
+                ChromeDriverService commandlinehider = ChromeDriverService.CreateDefaultService();
+                commandlinehider.HideCommandPromptWindow = true;
+                ChromeOptions chrome_options = new ChromeOptions();
+                chrome_options.AddUserProfilePreference("download_restrictions", 3);
+                chrome_options.AddArgument("use-fake-ui-for-media-stream");
+                ChromeDriver browser = new ChromeDriver(commandlinehider, chrome_options);
+                browser.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
+                browser.Manage().Window.Maximize();
+                drivers.Add(browser);
+                try
+                {
+                    browser.Navigate().GoToUrl(URL);
+                    ((IJavaScriptExecutor)browser).ExecuteScript("window.open();");
+                    browser.SwitchTo().Window(browser.WindowHandles.First());
+                    browser.Close();
+                    browser.SwitchTo().Window(browser.WindowHandles.First());
+                    browser.Navigate().GoToUrl(URL);
+                    browser.FindElementByCssSelector("#push_download_join_by_browser").Click();
+                    browser.SwitchTo().Frame(browser.FindElementByCssSelector("#pb-app-container > iframe"));
+                    browser.FindElementByCssSelector("#meetingSimpleContainer > div.style-box-2gTpv > div.style-name-input-19PlX > input").SendKeys(NameInput.Text);
+                    browser.FindElementByCssSelector("#meetingSimpleContainer > div.style-box-2gTpv > div.style-email-input-1yF5y > input").SendKeys(EmailInput.Text);
+                    browser.FindElementByCssSelector("#guest_next-btn").Click();
+                    browser.FindElementByCssSelector("#meetingSimpleContainer > div.style-content-container-YOy1G > div.style-control-bar-2vCte > div:nth-child(1) > div > button").Click();
+                    browser.FindElementByCssSelector("#meetingSimpleContainer > div.style-content-container-YOy1G > div.style-control-bar-2vCte > div:nth-child(2) > div > button").Click();
+                    browser.FindElementByCssSelector("#interstitial_join_btn").Click();
+                }
+                catch (Exception)
+                {
+                    drivers.Remove(browser);
+                }
             }
-            ProcessStartInfo psInfo = new()
+            else
             {
-                FileName = URL,
-                UseShellExecute = true
-            };
-            Process.Start(psInfo);
+                ProcessStartInfo psInfo = new()
+                {
+                    FileName = URL,
+                    UseShellExecute = true
+                };
+                Process.Start(psInfo);
+            }
         }
         private static string FormatDifference(TimeSpan dateDifference)
         {

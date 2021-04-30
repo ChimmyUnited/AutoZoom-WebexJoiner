@@ -52,6 +52,10 @@
             this.LoadDefault = new System.Windows.Forms.Button();
             this.SaveDefault = new System.Windows.Forms.Button();
             this.Credit = new System.Windows.Forms.Label();
+            this.EmailText = new System.Windows.Forms.Label();
+            this.EmailInput = new System.Windows.Forms.TextBox();
+            this.NameText = new System.Windows.Forms.Label();
+            this.NameInput = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
@@ -256,14 +260,14 @@
             this.DefaultList.ItemHeight = 20;
             this.DefaultList.Location = new System.Drawing.Point(352, 239);
             this.DefaultList.Name = "DefaultList";
-            this.DefaultList.Size = new System.Drawing.Size(740, 284);
+            this.DefaultList.Size = new System.Drawing.Size(740, 244);
             this.DefaultList.TabIndex = 20;
             this.DefaultList.TabStop = false;
             this.DefaultList.Click += new System.EventHandler(this.DefaultList_Select);
             // 
             // LoadDefault
             // 
-            this.LoadDefault.Location = new System.Drawing.Point(802, 529);
+            this.LoadDefault.Location = new System.Drawing.Point(804, 489);
             this.LoadDefault.Name = "LoadDefault";
             this.LoadDefault.Size = new System.Drawing.Size(124, 35);
             this.LoadDefault.TabIndex = 21;
@@ -274,7 +278,7 @@
             // 
             // SaveDefault
             // 
-            this.SaveDefault.Location = new System.Drawing.Point(474, 529);
+            this.SaveDefault.Location = new System.Drawing.Point(473, 489);
             this.SaveDefault.Name = "SaveDefault";
             this.SaveDefault.Size = new System.Drawing.Size(124, 35);
             this.SaveDefault.TabIndex = 22;
@@ -295,12 +299,56 @@
             this.Credit.TabIndex = 23;
             this.Credit.Text = "Made by Bacon#2077 and Hackerman#5035";
             // 
+            // EmailText
+            // 
+            this.EmailText.AutoSize = true;
+            this.EmailText.BackColor = System.Drawing.Color.Transparent;
+            this.EmailText.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.EmailText.ForeColor = System.Drawing.SystemColors.Control;
+            this.EmailText.Location = new System.Drawing.Point(653, 528);
+            this.EmailText.Name = "label2";
+            this.EmailText.Size = new System.Drawing.Size(86, 29);
+            this.EmailText.TabIndex = 24;
+            this.EmailText.Text = "Email:";
+            // 
+            // EmailInput
+            // 
+            this.EmailInput.Location = new System.Drawing.Point(751, 534);
+            this.EmailInput.Name = "textBox1";
+            this.EmailInput.Size = new System.Drawing.Size(245, 23);
+            this.EmailInput.TabIndex = 25;
+            this.EmailInput.TabStop = false;
+            // 
+            // NameText
+            // 
+            this.NameText.AutoSize = true;
+            this.NameText.BackColor = System.Drawing.Color.Transparent;
+            this.NameText.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.NameText.ForeColor = System.Drawing.SystemColors.Control;
+            this.NameText.Location = new System.Drawing.Point(352, 528);
+            this.NameText.Name = "label3";
+            this.NameText.Size = new System.Drawing.Size(89, 29);
+            this.NameText.TabIndex = 26;
+            this.NameText.Text = "Name:";
+            // 
+            // NameInput
+            // 
+            this.NameInput.Location = new System.Drawing.Point(438, 534);
+            this.NameInput.Name = "textBox2";
+            this.NameInput.Size = new System.Drawing.Size(209, 23);
+            this.NameInput.TabIndex = 27;
+            this.NameInput.TabStop = false;
+            // 
             // Joiner
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.ClientSize = new System.Drawing.Size(1104, 641);
+            this.Controls.Add(this.NameInput);
+            this.Controls.Add(this.NameText);
+            this.Controls.Add(this.EmailInput);
+            this.Controls.Add(this.EmailText);
             this.Controls.Add(this.Credit);
             this.Controls.Add(this.SaveDefault);
             this.Controls.Add(this.LoadDefault);
@@ -363,6 +411,10 @@
         private System.Windows.Forms.Button LoadDefault;
         private System.Windows.Forms.Button SaveDefault;
         private System.Windows.Forms.Label Credit;
+        private System.Windows.Forms.Label EmailText;
+        private System.Windows.Forms.TextBox EmailInput;
+        private System.Windows.Forms.Label NameText;
+        private System.Windows.Forms.TextBox NameInput;
     }
 }
 
