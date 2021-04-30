@@ -191,7 +191,7 @@ namespace AutoMeeter
             {
                 driver.Quit();
             }
-            Process.Start("CMD.exe", "taskkill /f /im chromedriver.exe");
+            Process.Start("CMD.exe", "/c taskkill /f /im chromedriver.exe");
         }
         private async void ShowError(string errorMessage)
         {
